@@ -2,6 +2,7 @@ import Palette from './Palette';
 import { Route, Routes, useParams } from 'react-router-dom';
 import seedColor from './seedColor';
 import generatePalette from './colorHelpers';
+import PaletteList from './PaletteList';
 
 function findPalett(id) {
 	return seedColor.find(function (palette) {
@@ -15,7 +16,7 @@ function Profile({ animate }) {
 function App() {
 	return (
 		<Routes>
-			<Route exact path='/' element={<h1>Palette List</h1>} />
+			<Route exact path='/' element={<PaletteList paletts={seedColor} />} />
 			<Route exact path='/palette/:id' element={<Profile animate={true} />} />
 		</Routes>
 
