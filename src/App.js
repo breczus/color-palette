@@ -16,7 +16,11 @@ function Profile({ animate }) {
 function App() {
 	return (
 		<Routes>
-			<Route exact path='/' element={<PaletteList paletts={seedColor} />} />
+			<Route
+				exact
+				path='/'
+				element={<PaletteList paletts={seedColor} authed={true} />}
+			/>
 			<Route exact path='/palette/:id' element={<Profile animate={true} />} />
 		</Routes>
 
