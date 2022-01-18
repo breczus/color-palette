@@ -3,6 +3,7 @@ import { Route, Routes, useParams } from 'react-router-dom';
 import seedColor from './seedColor';
 import generatePalette from './colorHelpers';
 import PaletteList from './PaletteList';
+import SingleColor from './SingleColor';
 
 function findPalett(id) {
 	return seedColor.find(function (palette) {
@@ -22,11 +23,12 @@ function App() {
 				element={<PaletteList paletts={seedColor} authed={true} />}
 			/>
 			<Route exact path='/palette/:id' element={<Profile animate={true} />} />
+			<Route
+				exact
+				path='/palette/:paletteId/:colorId'
+				element={<SingleColor />}
+			/>
 		</Routes>
-
-		// <div>
-		// 	<Palette palette={generatePalette(seedColor[4])} />
-		// </div>
 	);
 }
 
