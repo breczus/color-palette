@@ -10,9 +10,19 @@ function findPalett(id) {
 		return palette.id === id;
 	});
 }
-function Profile({ animate }) {
+
+function PaletteParams() {
 	let params = useParams();
 	return <Palette palette={generatePalette(findPalett(params.id))} />;
+}
+function SingleParams() {
+	let params = useParams();
+	return (
+		<SingleColor
+			colorId={params.colorId}
+			palette={generatePalette(findPalett(params.paletteId))}
+		/>
+	);
 }
 function App() {
 	return (
@@ -22,11 +32,15 @@ function App() {
 				path='/'
 				element={<PaletteList paletts={seedColor} authed={true} />}
 			/>
-			<Route exact path='/palette/:id' element={<Profile animate={true} />} />
+			<Route
+				exact
+				path='/palette/:id'
+				element={<PaletteParams animate={true} />}
+			/>
 			<Route
 				exact
 				path='/palette/:paletteId/:colorId'
-				element={<SingleColor />}
+				element={<SingleParams animate={true} />}
 			/>
 		</Routes>
 	);
