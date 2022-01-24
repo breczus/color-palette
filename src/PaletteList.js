@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import MiniPalette from './MiniPalette';
-import { useNavigate } from 'react-router-dom';
 import { withStyles } from '@material-ui/styles';
 
 const styles = {
