@@ -18,6 +18,12 @@ export default {
 		color: 'white',
 		width: '100%',
 		justifyContent: 'space-between',
+		alignItems: 'center',
+		color: 'white',
+		'& a': {
+			textDecoration: 'none',
+			color: 'white',
+		},
 	},
 	palettes: {
 		boxSizing: 'border-box',

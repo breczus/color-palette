@@ -4,6 +4,7 @@ import seedColor from './seedColor';
 import generatePalette from './colorHelpers';
 import PaletteList from './PaletteList';
 import SingleColor from './SingleColor';
+import NewPaletteForm from './NewPaletteForm';
 
 function findPalett(id) {
 	return seedColor.find(function (palette) {
@@ -27,6 +28,7 @@ function SingleParams() {
 function App() {
 	return (
 		<Routes>
+			<Route exact path='/palette/new' element={<NewPaletteForm />} />
 			<Route
 				exact
 				path='/'
