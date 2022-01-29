@@ -17,8 +17,10 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
+import { ChromePicker } from 'react-color';
+import { Button } from '@material-ui/core';
 
-const drawerWidth = 240;
+const drawerWidth = 400;
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -81,6 +83,7 @@ export default function NewPaletteForm() {
 	const classes = useStyles();
 	const theme = useTheme();
 	const [open, setOpen] = React.useState(false);
+	const [background, setBackground] = React.useState('red');
 
 	const handleDrawerOpen = () => {
 		setOpen(true);
@@ -90,6 +93,9 @@ export default function NewPaletteForm() {
 		setOpen(false);
 	};
 
+	const handleChangeComplete = (e) => {
+		setBackground(e.hex);
+	};
 	return (
 		<div className={classes.root}>
 			<CssBaseline />
@@ -129,6 +135,22 @@ export default function NewPaletteForm() {
 					</IconButton>
 				</div>
 				<Divider />
+				<Typography variant='h4'>Create Your Palette</Typography>
+				<div>
+					<Button variant='contained' color='secondary'>
+						Clear Palette
+					</Button>
+					<Button variant='contained' color='primary'>
+						Random Color
+					</Button>
+				</div>
+				<ChromePicker
+					color={background}
+					onChangeComplete={handleChangeComplete}
+				/>
+				<Button variant='contained' color='primary'>
+					Add Color
+				</Button>
 			</Drawer>
 			<main
 				className={clsx(classes.content, {
