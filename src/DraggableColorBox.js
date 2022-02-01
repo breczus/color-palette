@@ -39,7 +39,10 @@ function DraggableColorBox(props) {
 		>
 			<div className={props.classes.boxContent}>
 				<span>{props.name}</span>
-				<DeleteIcon style={{ transition: 'all 0.3s ease-in-out' }} />
+				<DeleteIcon
+					style={{ transition: 'all 0.3s ease-in-out' }}
+					onClick={props.delete}
+				/>
 			</div>
 		</div>
 	);
