@@ -1,6 +1,6 @@
 import React from 'react';
 import Palette from './Palette';
-import { Route, Routes, useParams, useNavigate } from 'react-router-dom';
+import { Route, Routes, useParams } from 'react-router-dom';
 import seedColor from './seedColor';
 import generatePalette from './colorHelpers';
 import PaletteList from './PaletteList';
@@ -38,7 +38,9 @@ function App() {
 			<Route
 				exact
 				path='/palette/new'
-				element={<NewPaletteForm savePalette={addPalette} />}
+				element={
+					<NewPaletteForm savePalette={addPalette} palettes={palettes} />
+				}
 			/>
 			<Route
 				exact

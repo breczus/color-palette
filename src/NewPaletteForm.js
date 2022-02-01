@@ -14,7 +14,6 @@ import Button from '@material-ui/core/Button';
 import DraggableColorBox from './DraggableColorBox';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import { ChromePicker } from 'react-color';
-import { Redirect, useNavigate, Link } from 'react-router-dom';
 import { withNavigation } from './hoc';
 
 const drawerWidth = 400;
@@ -120,7 +119,6 @@ class NewPaletteForm extends Component {
 			name: this.state.newName,
 		};
 		this.setState({ colors: [...this.state.colors, newColor], newName: '' });
-		this.props.navigate('/');
 	}
 	handleChange(evt) {
 		this.setState({ newName: evt.target.value });
@@ -134,6 +132,7 @@ class NewPaletteForm extends Component {
 			colors: this.state.colors,
 		};
 		this.props.savePalette(newPalette);
+		this.props.navigate('/');
 	}
 	render() {
 		const { classes } = this.props;
@@ -168,7 +167,6 @@ class NewPaletteForm extends Component {
 						>
 							Save Palette
 						</Button>
-						<Link to='/'>Home</Link>
 					</Toolbar>
 				</AppBar>
 				<Drawer
