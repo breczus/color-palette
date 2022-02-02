@@ -8,7 +8,7 @@ import SingleColor from './SingleColor';
 import NewPaletteForm from './NewPaletteForm';
 import { useEffect } from 'react';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
-import './App.css';
+import Page from './Page';
 
 function App() {
 	const location = useLocation();
@@ -57,46 +57,46 @@ function App() {
 
 	return (
 		<TransitionGroup component={null}>
-			<CSSTransition key={location.key} classNames='fade' timeout={500}>
+			<CSSTransition key={location.key} classNames='page' timeout={500}>
 				<Routes location={location}>
 					<Route
 						exact
 						path='/palette/new'
 						element={
-							<div className='page'>
+							<Page>
 								<NewPaletteForm savePalette={addPalette} palettes={palettes} />
-							</div>
+							</Page>
 						}
 					/>
 					<Route
 						exact
 						path='/'
 						element={
-							<div className='page'>
+							<Page>
 								<PaletteList
 									paletts={palettes}
 									authed={true}
 									deletePalette={deletePalette}
 								/>
-							</div>
+							</Page>
 						}
 					/>
 					<Route
 						exact
 						path='/palette/:id'
 						element={
-							<div className='page'>
+							<Page>
 								<PaletteParams animate={true} />
-							</div>
+							</Page>
 						}
 					/>
 					<Route
 						exact
 						path='/palette/:paletteId/:colorId'
 						element={
-							<div className='page'>
+							<Page>
 								<SingleParams animate={true} />
-							</div>
+							</Page>
 						}
 					/>
 				</Routes>
