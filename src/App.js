@@ -13,7 +13,6 @@ import Page from './Page';
 function App() {
 	const location = useLocation();
 	const savedPalettes = JSON.parse(window.localStorage.getItem('palettes'));
-	console.log(savedPalettes);
 	const [palettes, updatePalettes] = React.useState(savedPalettes || seedColor);
 	function findPalett(id) {
 		return palettes.find(function (palette) {
@@ -105,4 +104,4 @@ function App() {
 	);
 }
 
-export default App;
+export default React.memo(App);

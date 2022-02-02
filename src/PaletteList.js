@@ -97,4 +97,4 @@ class PaletteList extends Component {
 	}
 }
 
-export default withStyles(styles)(PaletteList);
+export default React.memo(withStyles(styles)(PaletteList));

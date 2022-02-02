@@ -37,4 +37,4 @@ function MiniPalette(props) {
 	);
 }
 
-export default withStyles(styles)(MiniPalette);
+export default React.memo(withStyles(styles)(MiniPalette));

@@ -1,5 +1,5 @@
 import Sizes from './Sizes';
-export default {
+const styles = {
 	slider: {
 		width: '340px',
 		margin: '0 10px',
@@ -56,3 +56,4 @@ export default {
 		marginRight: '1rem',
 	},
 };
+export default styles;

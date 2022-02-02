@@ -1,6 +1,6 @@
 import Sizes from './Sizes';
 import bg from './bg.svg';
-export default {
+const styles = {
 	'@global': {
 		'.fade-exit': {
 			opacity: 1,
@@ -38,7 +38,6 @@ export default {
 	},
 	nav: {
 		display: 'flex',
-		color: 'white',
 		width: '100%',
 		justifyContent: 'space-between',
 		alignItems: 'center',
@@ -63,3 +62,4 @@ export default {
 		},
 	},
 };
+export default styles;
