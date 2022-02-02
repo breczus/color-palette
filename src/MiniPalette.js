@@ -14,7 +14,7 @@ function MiniPalette(props) {
 	}
 	function deletePalette(e) {
 		e.stopPropagation();
-		props.deletePalette(props.id);
+		props.openDialog(props.id);
 	}
 
 	const miniColorBoxes = colors.map((color) => (
