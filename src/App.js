@@ -1,14 +1,17 @@
 import React from 'react';
 import Palette from './Palette';
-import { Route, Routes, useParams } from 'react-router-dom';
+import { Route, Routes, useParams, useLocation } from 'react-router-dom';
 import seedColor from './seedColor';
 import generatePalette from './colorHelpers';
 import PaletteList from './PaletteList';
 import SingleColor from './SingleColor';
 import NewPaletteForm from './NewPaletteForm';
 import { useEffect } from 'react';
+import { TransitionGroup, CSSTransition } from 'react-transition-group';
+import './App.css';
 
 function App() {
+	const location = useLocation();
 	const savedPalettes = JSON.parse(window.localStorage.getItem('palettes'));
 	console.log(savedPalettes);
 	const [palettes, updatePalettes] = React.useState(savedPalettes || seedColor);
@@ -53,36 +56,52 @@ function App() {
 	}
 
 	return (
-		<Routes>
-			<Route
-				exact
-				path='/palette/new'
-				element={
-					<NewPaletteForm savePalette={addPalette} palettes={palettes} />
-				}
-			/>
-			<Route
-				exact
-				path='/'
-				element={
-					<PaletteList
-						paletts={palettes}
-						authed={true}
-						deletePalette={deletePalette}
+		<TransitionGroup component={null}>
+			<CSSTransition key={location.key} classNames='fade' timeout={500}>
+				<Routes location={location}>
+					<Route
+						exact
+						path='/palette/new'
+						element={
+							<div className='page'>
+								<NewPaletteForm savePalette={addPalette} palettes={palettes} />
+							</div>
+						}
 					/>
-				}
-			/>
-			<Route
-				exact
-				path='/palette/:id'
-				element={<PaletteParams animate={true} />}
-			/>
-			<Route
-				exact
-				path='/palette/:paletteId/:colorId'
-				element={<SingleParams animate={true} />}
-			/>
-		</Routes>
+					<Route
+						exact
+						path='/'
+						element={
+							<div className='page'>
+								<PaletteList
+									paletts={palettes}
+									authed={true}
+									deletePalette={deletePalette}
+								/>
+							</div>
+						}
+					/>
+					<Route
+						exact
+						path='/palette/:id'
+						element={
+							<div className='page'>
+								<PaletteParams animate={true} />
+							</div>
+						}
+					/>
+					<Route
+						exact
+						path='/palette/:paletteId/:colorId'
+						element={
+							<div className='page'>
+								<SingleParams animate={true} />
+							</div>
+						}
+					/>
+				</Routes>
+			</CSSTransition>
+		</TransitionGroup>
 	);
 }
 
