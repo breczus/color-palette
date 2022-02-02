@@ -6,9 +6,12 @@ import generatePalette from './colorHelpers';
 import PaletteList from './PaletteList';
 import SingleColor from './SingleColor';
 import NewPaletteForm from './NewPaletteForm';
+import { useEffect } from 'react';
 
 function App() {
-	const [palettes, updatePalettes] = React.useState(seedColor);
+	const savedPalettes = JSON.parse(window.localStorage.getItem('palettes'));
+	console.log(savedPalettes);
+	const [palettes, updatePalettes] = React.useState(savedPalettes || seedColor);
 	function findPalett(id) {
 		return palettes.find(function (palette) {
 			return palette.id === id;
@@ -18,7 +21,13 @@ function App() {
 	function addPalette(newPalette) {
 		updatePalettes([...palettes, newPalette]);
 	}
+	useEffect(() => {
+		syncLocalStorage();
+	});
 
+	function syncLocalStorage() {
+		window.localStorage.setItem('palettes', JSON.stringify(palettes));
+	}
 	function PaletteParams() {
 		let params = useParams();
 		return <Palette palette={generatePalette(findPalett(params.id))} />;
