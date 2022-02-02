@@ -59,6 +59,18 @@ function App() {
 			<CSSTransition key={location.key} classNames='page' timeout={500}>
 				<Routes location={location}>
 					<Route
+						path='*'
+						element={
+							<Page>
+								<PaletteList
+									paletts={palettes}
+									authed={true}
+									deletePalette={deletePalette}
+								/>
+							</Page>
+						}
+					/>
+					<Route
 						exact
 						path='/palette/new'
 						element={
