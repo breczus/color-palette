@@ -25,6 +25,16 @@ function App() {
 		syncLocalStorage();
 	});
 
+	function deletePalette(id) {
+		updatePalettes(
+			palettes.filter((palette) => {
+				return palette.id !== id;
+			})
+		);
+	}
+	useEffect(() => {
+		syncLocalStorage();
+	});
 	function syncLocalStorage() {
 		window.localStorage.setItem('palettes', JSON.stringify(palettes));
 	}
@@ -54,7 +64,13 @@ function App() {
 			<Route
 				exact
 				path='/'
-				element={<PaletteList paletts={palettes} authed={true} />}
+				element={
+					<PaletteList
+						paletts={palettes}
+						authed={true}
+						deletePalette={deletePalette}
+					/>
+				}
 			/>
 			<Route
 				exact

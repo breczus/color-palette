@@ -12,6 +12,10 @@ function MiniPalette(props) {
 
 		history(`/palette/${id}`);
 	}
+	function deletePalette(e) {
+		e.stopPropagation();
+		props.deletePalette(props.id);
+	}
 
 	const miniColorBoxes = colors.map((color) => (
 		<div
@@ -23,7 +27,7 @@ function MiniPalette(props) {
 	return (
 		<div className={classes.root} onClick={handleClick}>
 			<div className={classes.delete}>
-				<DeleteIcon className={classes.deleteIcon} />
+				<DeleteIcon className={classes.deleteIcon} onClick={deletePalette} />
 			</div>
 			<div className={classes.colors}>{miniColorBoxes}</div>
 			<h5 className={classes.title}>
